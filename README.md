@@ -30,15 +30,16 @@ This is a web-based application built with Streamlit that provides personalized 
 
 2. **Create a virtual environment (optional but recommended)**
 
-
+```bash
    python -m venv venv
    source venv/bin/activate    # On Windows: venv\Scripts\activate
+```
 
 3. **Install dependencies**
 
-
+```bash
    pip install -r requirements.txt
-
+```
 
 4. **Ensure your model file `random_forest_model.pkl` is placed in the root directory.**
 
