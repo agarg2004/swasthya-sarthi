@@ -1,5 +1,3 @@
-
-````markdown
 # 🥗 Diet and Exercise Recommendation Web App
 
 This is a web-based application built with Streamlit that provides personalized diet and exercise recommendations based on user inputs like age, weight, height, gender, and fitness goals. The recommendations are generated using a trained **Random Forest Classifier** model.
@@ -27,22 +25,20 @@ This is a web-based application built with Streamlit that provides personalized 
 ## 📦 Installation
 
 1. **Clone the repository**
-   ```bash
    git clone https://github.com/agarg2004/swasthya-sarthi
-````
+
 
 2. **Create a virtual environment (optional but recommended)**
 
-   ```bash
+
    python -m venv venv
    source venv/bin/activate    # On Windows: venv\Scripts\activate
-   ```
 
 3. **Install dependencies**
 
-   ```bash
+
    pip install -r requirements.txt
-   ```
+
 
 4. **Ensure your model file `random_forest_model.pkl` is placed in the root directory.**
 
