@@ -61,7 +61,7 @@ jaraco.classes==3.4.0
 jaraco.context==6.0.1
 jaraco.functools==4.1.0
 jax==0.4.30
-jaxlib==0.4.30
+jaxlib==0.6.2
 jedi==0.19.1
 Jinja2==3.1.4
 joblib==1.4.2
@@ -96,7 +96,7 @@ nest-asyncio==1.6.0
 networkx==3.4.2
 nh3==0.2.20
 nltk==3.9.1
-numpy==2.0.2
+numpy==1.26.4
 oauthlib==3.3.1
 opencv-python==4.8.1.78
 openpyxl==3.1.2
