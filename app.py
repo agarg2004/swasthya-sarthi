@@ -38,13 +38,15 @@ if PAGES[sel_page] == "fitness":
     @st.cache_resource
     def load_fitness_assets():
         data = pd.read_excel('gym recommendation.xlsx')
-        model = pickle.load(open('models/random.pkl', 'rb'))
+        model = pickle.load(open('model.pkl', 'rb'))
         scaler = pickle.load(open('models/scaler_random.pkl', 'rb'))
-        encoder = pickle.load(open('models/label_encoder.pkl', 'rb'))
-        return data, model, scaler, encoder
+        encoder = pickle.load(open('models/label_encoders.pkl', 'rb'))
+        target_encoder = pickle.load(open('models/target_encoder.pkl', 'rb'))
+        
+        return data, model, scaler, encoder, target_encoder
 
     try:
-        data, model, scaler, encoder = load_fitness_assets()
+        data, model, scaler, encoder ,target_encoder= load_fitness_assets()
     except Exception as e:
         st.error(f"Model/Data error: {e}")
         st.stop()
@@ -76,13 +78,16 @@ if PAGES[sel_page] == "fitness":
             st.error("Your BMI indicates you are Obese. Please consult a healthcare provider for personalized advice.")
 
         input_data = {
-            'Sex': 1 if sex == "Male" else 0,
+            
             'Age': age,
             'Height': height,
             'Weight': weight,
+            'BMI': bmi,
+            'Sex': 1 if sex == "Male" else 0,
+            
             'Hypertension': 1 if hypertension == "Yes" else 0,
             'Diabetes': 1 if diabetes == "Yes" else 0,
-            'BMI': bmi,
+            
             'Level': {"Normal": 0, "Obese": 1, "Overweight": 2, "Underweight": 3}[level],
             'Fitness Goal': 0 if goal == "Weight Gain" else 1,
             'Fitness Type': 0 if ftype == "Cardio Fitness" else 1
@@ -94,17 +99,37 @@ if PAGES[sel_page] == "fitness":
 
         try:
             prediction = model.predict(X)
-            decoded_value = encoder.inverse_transform(prediction)[0]
+            predicted_class_encoded = prediction[0]
 
-            st.markdown(f"### 🧠 **AI Recommendation:** `{decoded_value}`")
-            st.markdown("**📋 Main Recommendation:**")
-            st.info(data['Recommendation'].unique().tolist()[0])
-            st.markdown("**💪 Exercises:**")
-            st.success(data['Exercises'].unique().tolist()[0])
-            st.markdown("**🍽️ Diet:**")
-            st.success(data['Diet'].unique().tolist()[0])
-            st.markdown("**🏋️ Equipment:**")
-            st.success(data['Equipment'].unique().tolist()[0])
+            # Decode the numeric label into a string label
+            decoded_value = target_encoder.inverse_transform([prediction])[0]
+            print("decoded value is: ", decoded_value)
+
+            # Filter matching rows in dataset (exact match)
+            matched_rows = data[data['Recommendation'] == decoded_value]
+
+            # Check if a match exists
+            if not matched_rows.empty:
+                rec = matched_rows.iloc[0] # safely use first matched row
+                # print(rec)
+
+                st.markdown(f"### 🧠 **AI Recommendation:**")
+
+                st.markdown("**📋 Main Recommendation:**")
+                st.info(rec['Recommendation'])
+
+                st.markdown("**💪 Exercises:**")
+                st.success(rec['Exercises'])
+
+                st.markdown("**🍽️ Diet:**")
+                st.success(rec['Diet'])
+
+                st.markdown("**🏋️ Equipment:**")
+                st.success(rec['Equipment'])
+
+            else:
+                st.warning("❗ No matching recommendation found in the dataset.")
+
         except Exception as e:
             st.error(f"Prediction error: {e}")
 
