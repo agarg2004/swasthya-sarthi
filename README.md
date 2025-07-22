@@ -1,3 +1,18 @@
+## 🏋️ Swasthya Sarthi: AI-Powered Fitness Recommendation System
+Swasthya Sarthi is an AI-driven fitness assistant and chatbot that gives personalized workout, diet, and fitness equipment recommendations based on user input. Built with 🧠 machine learning, 🤖 Streamlit, and ⚡ LangChain/Together AI.
+
+## Features
+💪 Fitness Plan Recommendations (based on RandomForestClassifier)
+
+🤖 Interactive Fitness Chatbot (via Together AI’s Mixtral model)
+
+📈 BMI calculation with health insights
+
+🧠 Memory and Context-aware conversation
+
+💾 Trainable ML pipeline with exported .pkl models
+
+💬 PDF Export of chat sessions
 
 ## 🛠️ Setup Instructions
 
