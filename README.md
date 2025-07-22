@@ -1,24 +1,3 @@
-````markdown
-# 💬 Fitness Chatbot using Together AI + Streamlit
-
-A web-based chatbot built using [Streamlit](https://streamlit.io/) and [Together AI's](https://together.ai) large language models (LLMs), such as **Mixtral-8x7B**, via the Together API. This chatbot can help users with fitness questions, workout tips, and more!
-
----
-
-## 🚀 Features
-
-- 🧠 Powered by **Together AI LLMs** (Mixtral, LLaMA, etc.)
-- ⚡️ Simple Streamlit interface
-- 💾 Conversational memory for context-aware responses
-- 🔐 `.env`-based secure API key handling
-
----
-
-## 🖥️ Demo
-
-<img src="https://i.imgur.com/CNUQEf2.png" alt="Demo Screenshot" width="600">
-
----
 
 ## 🛠️ Setup Instructions
 
