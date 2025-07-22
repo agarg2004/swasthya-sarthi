@@ -45,3 +45,6 @@ sentence-transformers==4.1.0
 
 # Optional NLP tools (only needed for advanced use)
 nltk==3.9.1
+
+# Optional NLP tools (only needed for advanced use)
+nltk==3.9.1
