@@ -1,100 +1,118 @@
-🏋️ Swasthya Sarthi: AI-Powered Fitness Recommendation System
-![Streamlit UI](https://img.shields.io/badge/Built-with%20Streamlit](https://img.shields.io/badge/ML-RandomForest%20%2B](https://img.shields.io/badge/License-MIT-lightgreyarthi** is an AI-driven fitness assistant and chatbot that gives personalized workout, diet, and fitness equipment recommendations based on user input. Built with 🧠 machine learning, 🤖 Streamlit, and ⚡ LangChain/Together AI.
+````markdown
+# 💬 Fitness Chatbot using Together AI + Streamlit
 
-✅ Features
-💪 Fitness Plan Recommendations (based on RandomForestClassifier)
+A web-based chatbot built using [Streamlit](https://streamlit.io/) and [Together AI's](https://together.ai) large language models (LLMs), such as **Mixtral-8x7B**, via the Together API. This chatbot can help users with fitness questions, workout tips, and more!
 
-🤖 Interactive Fitness Chatbot (via Together AI’s Mixtral model)
+---
 
-📊 KMeans-based Cluster Recommendations
+## 🚀 Features
 
-📈 BMI calculation with health insights
+- 🧠 Powered by **Together AI LLMs** (Mixtral, LLaMA, etc.)
+- ⚡️ Simple Streamlit interface
+- 💾 Conversational memory for context-aware responses
+- 🔐 `.env`-based secure API key handling
 
-🧠 Memory and Context-aware conversation
+---
 
-💾 Trainable ML pipeline with exported .pkl models
+## 🖥️ Demo
 
-💬 PDF Export of chat sessions
+<img src="https://i.imgur.com/CNUQEf2.png" alt="Demo Screenshot" width="600">
 
-✅ Voice input (optional)
+---
 
-📁 Clean modular structure
+## 🛠️ Setup Instructions
 
-📁 Folder Structure
-text
-├── app.py                            # Main Streamlit app
-├── train_model.py                    # Training script for RandomForest
-├── train_kmeans.py                   # (optional) KMeans training
-├── requirements.txt                  # Required Python libraries
-├── gym recommendation.xlsx           # Dataset
-├── models/                           # Saved models and encoders
-│   ├── random.pkl
-│   ├── scaler_random.pkl
-│   ├── label_encoders.pkl
-│   ├── target_encoder.pkl
-│   ├── kmeans.pkl
-│   ├── scaler_kmeans.pkl
-│   └── kmeans_features.json
-├── .env                              # Environment variables (for API keys)
-└── README.md                         # This file!
-🧠 Technologies Used
-Category	Tools Used
-Frontend	Streamlit
-Machine Learning	scikit-learn (RandomForest, KMeans)
-NLP / LLM Integration	OpenAI / Together AI (LangChain)
-Data	Pandas, NumPy
-File I/O	joblib, pickle, openpyxl
-Export & Voice (extra)	FPDF, pyttsx3, SpeechRecognition
-🚀 How to Run This App Locally
-🔧 1. Clone the Repo
-bash
-git clone https://github.com/your-username/swasthya-sarthi.git
-cd swasthya-sarthi
-📦 2. Install Requirements
-bash
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/fitness-chatbot-together.git
+cd fitness-chatbot-together
+````
+
+### 2️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
-🔑 3. Set Up Environment Variable
-Create a .env file in the root folder:
+```
 
-text
-TOGETHER_API_KEY=your_together_api_key_here
-▶️ 4. Run Streamlit App
-bash
+Or manually:
+
+```bash
+pip install streamlit langchain langchain-community together python-dotenv
+```
+
+### 3️⃣ Set Your Together API Key
+
+Create a `.env` file in the root directory:
+
+```bash
+TOGETHER_API_KEY=your_actual_api_key_here
+```
+
+You can get a free key from: [https://app.together.ai](https://app.together.ai)
+
+### 4️⃣ Run the App
+
+```bash
 streamlit run app.py
-📊 Dataset Format
-Your gym recommendation.xlsx should include:
+```
 
-Age	Height	Weight	BMI	Sex	...	Recommendation	Exercises	Diet	Equipment
-🔐 Security Note
-Do not expose your .env or API keys publicly.
+---
 
-.env should be added in .gitignore.
+## 🧠 How It Works
 
-📚 Future Enhancements
-✅ Multi-page UI with chatbot/document reader tabs
+* Uses `langchain_community.chat_models.ChatTogether` to access Together's models
+* Maintains a conversation history using LangChain’s `ConversationBufferMemory`
+* UI powered by Streamlit
+* Accepts one question at a time and provides AI-generated responses
 
-📂 File uploader for personalized document analysis (LangChain Q&A)
+---
 
-🧠 Hybrid recommender (KMeans filter → RandomForest ranker)
+## 🔐 Environment Variables
 
-📶 Streamlit Cloud & HuggingFace Space deployment
+| Variable           | Description              |
+| ------------------ | ------------------------ |
+| `TOGETHER_API_KEY` | Your Together AI API key |
 
-📱 Mobile UI view optimization
+---
 
-💡 Contributing
-Contributions are welcome! Please open issues or submit a pull request with suggestions.
+## 🤖 Supported Models
 
-📝 License
-This project is licensed under the MIT License. See the LICENSE file for details.
+You can change the model in `app.py`:
 
-🙌 Acknowledgements
-Streamlit for making rapid app dev a breeze
+```python
+model="mistralai/Mixtral-8x7B-Instruct-v0.1"
+```
 
-Together AI for free access to large language models
+Or try:
 
-scikit-learn for powerful machine learning algorithms
+* `meta-llama/Llama-2-70b-chat-hf`
+* `tiiuae/falcon-180B-chat`
+* and others listed on [https://docs.together.ai/docs/inference-models](https://docs.together.ai/docs/inference-models)
 
-📬 Contact
-Author: [Your Name]
-Email: your.email@example.com
-GitHub: @your-username
+---
+
+## 🧾 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙋‍♂️ Support
+
+Feel free to open an [Issue](https://github.com/<your-username>/fitness-chatbot-together/issues) or submit a [Pull Request](https://github.com/<your-username>/fitness-chatbot-together/pulls) if you'd like to contribute or need help.
+
+---
+
+## 💡 Future Ideas
+
+* 🧍 Personalized fitness recommendations
+* 🗣️ Voice input & TTS response
+* 🧾 Chat history saving
+* 📊 Recommendation analytics
+
+---
+
+Made with ❤️ by **Anirudh Garg**
+
+```
