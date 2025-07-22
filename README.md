@@ -109,4 +109,3 @@ Feel free to open an [Issue](https://github.com/<your-username>/fitness-chatbot-
 
 Made with ❤️ by **Anirudh Garg**
 
-```
